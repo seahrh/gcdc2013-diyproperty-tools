@@ -13,6 +13,7 @@ public class JsonFileGenerator {
 	
 	private static final String STREETS_FILENAME = "streets";
 	private static final String PROPERTY_TYPES_FILENAME = "propertytypes";
+	private static final String FEATURES_FILENAME = "features";
 
 	/**
 	 * @param args
@@ -28,9 +29,9 @@ public class JsonFileGenerator {
 		String filename = Files.getNameWithoutExtension(args[0]);
 		System.out.println("Processing filename : " + filename);
 		
-		if (filename.equalsIgnoreCase(STREETS_FILENAME)) {
+		if (filename.equalsIgnoreCase(STREETS_FILENAME) || filename.equalsIgnoreCase(FEATURES_FILENAME)) {
 			
-			streets(args[0], args[1]);
+			txtToJson(args[0], args[1]);
 			
 		} else if (filename.equalsIgnoreCase(PROPERTY_TYPES_FILENAME)) {
 			
@@ -99,7 +100,7 @@ public class JsonFileGenerator {
 		}
 	}
 
-	private static void streets(String inFilePath, String outFilePath) {
+	private static void txtToJson(String inFilePath, String outFilePath) {
 		File outFile = null;
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -136,7 +137,7 @@ public class JsonFileGenerator {
 			bw.write("]");
 
 			System.out.println(lineCount
-					+ " streets written to file successfully");
+					+ " items written to file successfully");
 
 		} catch (IOException e) {
 			e.printStackTrace();
