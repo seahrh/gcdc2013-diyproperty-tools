@@ -14,6 +14,7 @@ public class JsonFileGenerator {
 	private static final String STREETS_FILENAME = "streets";
 	private static final String PROPERTY_TYPES_FILENAME = "propertytypes";
 	private static final String FEATURES_FILENAME = "features";
+	private static final String FLAT_MODELS_FILENAME = "flatmodels";
 
 	/**
 	 * @param args
@@ -33,9 +34,9 @@ public class JsonFileGenerator {
 			
 			txtToJson(args[0], args[1]);
 			
-		} else if (filename.equalsIgnoreCase(PROPERTY_TYPES_FILENAME)) {
+		} else if (filename.equalsIgnoreCase(PROPERTY_TYPES_FILENAME) || filename.equalsIgnoreCase(FLAT_MODELS_FILENAME)) {
 			
-			propertyTypes(args[0], args[1]);
+			csvToJson(args[0], args[1]);
 			
 		} else {
 			System.out.println("Invalid filename! Do nothing");
@@ -43,7 +44,7 @@ public class JsonFileGenerator {
 
 	}
 	
-	private static void propertyTypes(String inFilePath, String outFilePath) {
+	private static void csvToJson(String inFilePath, String outFilePath) {
 		File outFile = null;
 		FileWriter fw = null;
 		BufferedWriter bw = null;
@@ -83,7 +84,7 @@ public class JsonFileGenerator {
 			bw.write("]");
 
 			System.out.println(lineCount
-					+ " property types written to file successfully");
+					+ " items written to file successfully");
 
 		} catch (IOException e) {
 			e.printStackTrace();
